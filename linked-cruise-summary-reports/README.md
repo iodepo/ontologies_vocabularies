@@ -2,8 +2,8 @@
 This repository contains the vocabulary for Linked Cruise Summary Reports
 
 ## Contents
-1. [Authors]
-1. [Acknowledgments]
+1. [Authors](#authors)
+1. [Acknowledgments](#acknowledgements)
 
 ## Authors
 Adam Leadbetter - Marine Institue, Ireland
