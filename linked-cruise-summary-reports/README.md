@@ -7,6 +7,7 @@ This repository contains the vocabulary for Linked Cruise Summary Reports
 
 ## Authors
 Adam Leadbetter - Marine Institue, Ireland
+
 Rob Thomas - Marine Institute, Ireland
 
 ## Acknowledgments
