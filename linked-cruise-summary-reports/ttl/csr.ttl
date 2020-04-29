@@ -1,0 +1,106 @@
+@base <http://purl.org/org/iode/po/voc/cruise-summary-reports>.
+
+@prefix dct: <http://www.purl.org/dc/terms/>.
+@prefix gl: <http://schema.geolink.org/1.0/base/main#>.
+@prefix gsp: <http://www.opengis.net/ont/geosparql#>.
+@prefix marineTLO: <http://www.ics.forth.gr/isl/ontology/MarineTLO/>.
+@prefix prov: <http://www.w3.org/ns/prov#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sdo: <http://schema.org/>.
+@prefix vann: <http://purl.org/vocab/vann/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+<> rdfs:label "Linked Cruise Summary Reports"@en;
+	rdfs:comment "This vocabulary describes the classes and predicates needed to represent Cruise Summary Reports as Linked Data."@en;
+	vann:preferredNamespacePrefix "csr";
+	vann:preferredNamespaceUri <http://purl.org/org/iode/po/voc/cruise-summary-reports>;
+	vann:usageNote <http://purl.org/org/iode/po/voc/cruise-summary-reports.md>.
+
+<#Cruise> a rdfs:Class;
+	rdfs:subClassOf gl:Cruise, marineTLO:BC61_Capture_Activity, sdo:Event;
+	rdfs:label "Cruise"@en;
+	rdfs:comment "A cruise is a port-to-port activity undertaken by a research vessel, or other ship equipped with instrumentation for oceanographic or marine scientific observations. A cruise is not limited to scintific operations but may also be an activity to relocate the vessel to another port for operational reasons."@en.
+
+<#CruiseSummaryReport> a rdfs:Class;
+	rdfs:label "Cruise summary report"@en.
+
+<#Operation> a rdfs:Class;
+	rdfs:label "Operation"@en.
+
+<#PortCall> a rdfs:Class;
+	rdfs:subClassOf gl:PortCall, sdo:Event;
+	rdfs:label "Port call"@en.
+
+gl:Cruise a rdfs:Class;
+	rdfs:subClassOf <#Cruise>.
+
+gl:PortCall a rdfs:Class;
+	rdfs:subClassOf <#PortCall>.
+	
+<#atPort> rdfs:subPropertyOf prov:atLocation;
+    rdfs:domain <#PortCall>;
+    rdfs:range xsd:anyUri;
+    rdfs:label "atPort"@en;
+    rdfs:comment "Describes the port at which a PortCall takes place. It is advised to use a term from a controlled vocabulary describing a gazetteer entry for the port as the object for the triple."@en.
+    
+<#hasChiefScientist> rdfs:subPropertyOf prov:wasAssociatedWith;
+    rdfs:domain <#Cruise>;
+    rdfs:range prov:Agent;
+    rdfs:label "hasChiefScientist";
+    rdfs:comment "The prov:Agent at the range of this predicate should represent the chief scientist undertaking the research cruise"@en.
+
+<#hasCoChiefScientist> rdfs:subPropertyOf prov:wasAssociatedWith;
+    rdfs:domain <#Cruise>;
+    rdfs:range prov:Agent;
+    rdfs:label "hasCoChiefScientist"@en;
+    rdfs:comment "The prov:Agent at the range of this predicate should represent one of a number of co-chief scientists undertaking the research cruise"@en.
+    
+<#hasDOI> rdfs:subPropertyOf dct:identifier;
+    rdfs:label "hasDOI"@en;
+    rdfs:comment "Links a cruise to a persistent identifier assigned to it (such as a digital object identifier [doi]).";
+    rdfs:range <#Cruise>;
+    rdfs:domain rdfs:Literal, xsd:anyURI.
+
+<#hasEndPortCall> rdfs:subPropertyOf prov:qualifiedEnd;
+    rdfs:range <#Cruise>;
+    rdfs:domain <#PortCall>;
+    rdfs:label "hasEndPortCall"@en;
+    rdfs:comment "Links a Cruise object to the PortCall object which describes the event which ended the Cruise."@en.
+
+<#hasIdentifier> rdfs:subPropertyOf rdfs:label;
+    rdfs:domain <#Cruise>;
+    rdfs:range rdfs:Literal;
+    rdfs:label "identifier"@en;
+    rdfs:comment "An identifier given to the research cruise by the organisation responsible for the research cruise taking place."@en.
+
+<#hasStartPortCall> rdfs:subPropertyOf prov:qualifiedStart;
+    rdfs:range <#Cruise>;
+    rdfs:domain <#PortCall>;
+    rdfs:label "hasStartPortCall"@en;
+    rdfs:comment "Links a Cruise object to the PortCall object which describes the event which started the Cruise."@en.
+
+<#hasTimeStamp> rdfs:subPropertyOf prov:atTime;
+    rdfs:domain <#PortCall>;
+    rdfs:range xsd:date, xsd:dateTime;
+    rdfs:label "hasTimeStamp"@en;
+    rdfs:comment "Describes the time at which a PortCall occurred"@en.
+    
+<#hasTrack> a rdf:Property;
+    rdfs:domain <#Cruise>;
+    rdfs:range gsp:wktLiteral;
+    rdfs:label "hasTrack"@en;
+    rdfs:comment "Provides a representation of the track taken by the research vessel during the Cruise as a Well Known Text literal."@en.
+
+<#isUndertakenBy> rdfs:subPropertyOf prov:used;
+    rdfs:domain <#Cruise>;
+    rdfs:range prov:Entity;
+    rdfs:label "isUndertakenBy"@en;
+    rdfs:comment "The prov:Agent at the range of this predicate should represent the vessel undertaking the Cruise. Ideally, a controlled vocabulary resource should be used to instantiate the prov:Agent, such as the International Council for the Exploration of the Seas platform code list."@en.
+
+<#undertook> rdfs:subPropertyOf prov:wasGeneratedBy;
+    rdfs:domain prov:Entity;
+    rdfs:range <#Cruise>;
+    rdfs:label "undertook";
+    rdfs:comment "The prov:Agent at the domain of this predicate should represent the vessel which undertook the Cruise at its range. Ideally, a controlled vocabulary resource should be used to instantiate the prov:Agent, such as the International Council for the Exploration of the Seas platform code list."@en.
+
