@@ -2,8 +2,21 @@
 This repository contains the vocabulary for Linked Cruise Summary Reports
 
 ## Contents
+1. [Namespaces Used](#namespaces-used)
+1. [Classes](#classes)
 1. [Authors](#authors)
 1. [Acknowledgments](#acknowledgements)
+
+## Namespaces Used
+
+## Classes
+[Cruise](#cruise) | [Port Call](#port-call) | [Summary Report](#summary-report)
+
+### Cruise
+
+### Port Call
+
+### Summary Report
 
 ## Authors
 Adam Leadbetter - Marine Institue, Ireland
