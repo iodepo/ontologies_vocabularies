@@ -1,9 +1,12 @@
 @base <http://purl.org/org/iode/po/voc/cruise-summary-reports>.
 
 @prefix dct: <http://www.purl.org/dc/terms/>.
+@prefix foaf: <http://xmlns.com/foaf/spec/#>.
 @prefix gl: <http://schema.geolink.org/1.0/base/main#>.
 @prefix gsp: <http://www.opengis.net/ont/geosparql#>.
 @prefix marineTLO: <http://www.ics.forth.gr/isl/ontology/MarineTLO/>.
+@prefix org: <http://www.w3.org/ns/org#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
 @prefix prov: <http://www.w3.org/ns/prov#>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
@@ -13,48 +16,288 @@
 
 <> rdfs:label "Linked Cruise Summary Reports"@en;
 	rdfs:comment "This vocabulary describes the classes and predicates needed to represent Cruise Summary Reports as Linked Data."@en;
-	vann:preferredNamespacePrefix "csr";
+	rdfs:seeAlso <http://purl.org/org/iode/po/voc/cruise-summary-reports.md>;
+	dct:hasVersion [
+		sdo:url <http://purl.org/org/iode/po/voc/cruise-summary-reports/2020-05-01>;
+		rdfs:seeAlso <http://purl.org/org/iode/po/voc/cruise-summary-reports/2020-05-01.md>
+	];
+	dct:created "2020-05-01"^^xsd:date;
+	dct:creator [
+		a dct:Agent, prov:Agent, sdo:Person;
+		sdo:givenName "Adam"@en;
+		sdo:familyName "Leadbetter"@en;
+		sdo:worksFor [
+			a sdo:Organization;
+			sdo:name "Marine Institute";
+			sdo:location [
+				a sdo:PostalAddress;
+				sdo:addressCountry [a sdo:Country; sdo:name "Ireland"@en]
+			]
+		]
+	], [
+		a dct:Agent, prov:Agent, sdo:Person;
+		sdo:givenName "Rob"@en;
+		sdo:familyName "Thomas"@en;
+		sdo:worksFor [
+			a sdo:Organization;
+			sdo:name "Marine Institute";
+			sdo:location [
+				a sdo:PostalAddress;
+				sdo:addressCountry [a sdo:Country; sdo:name "Ireland"@en]
+			]
+		]
+	];
+	dct:contributor [
+		a dct:Agent, prov:Agent, sdo:Person;
+		sdo:givenName "Robert"@en;
+		sdo:familyName "Arko"@en;
+		sdo:worksFor [
+			a sdo:Organization;
+			sdo:name "Lamont-Doherty Earth Observatory, Columbia University";
+			sdo:location [
+				a sdo:PostalAddress;
+				sdo:addressCountry [a sdo:Country; sdo:name "USA"@en]
+			]
+		]
+	], [
+		a dct:Agent, prov:Agent, sdo:Person;
+		sdo:givenName "Cynthia"@en;
+		sdo:familyName "Chandler"@en;
+		sdo:worksFor [
+			a sdo:Organization;
+			sdo:name "Biological and Chemical Data Management Office, Woods Hole Oceanographic Institution";
+			sdo:location [
+				a sdo:PostalAddress;
+				sdo:addressCountry [a sdo:Country; sdo:name "USA"@en]
+			]
+		]
+	];
+	dct:publisher [
+		a dct:Agent, sdo:Organization
+	];
+	vann:preferredNamespacePrefix "csr"@en;
 	vann:preferredNamespaceUri <http://purl.org/org/iode/po/voc/cruise-summary-reports>;
 	vann:usageNote <http://purl.org/org/iode/po/voc/cruise-summary-reports.md>.
+
+<#AssociatedEvent> a rdfs:Class;
+	rdfs:subClassOf prov:InstantaneousEvent;
+	rdfs:label "AssociatedEvent".
 
 <#Cruise> a rdfs:Class;
 	rdfs:subClassOf gl:Cruise, marineTLO:BC61_Capture_Activity, sdo:Event;
 	rdfs:label "Cruise"@en;
-	rdfs:comment "A cruise is a port-to-port activity undertaken by a research vessel, or other ship equipped with instrumentation for oceanographic or marine scientific observations. A cruise is not limited to scintific operations but may also be an activity to relocate the vessel to another port for operational reasons."@en.
+	rdfs:comment "A cruise is a port-to-port activity undertaken by a research vessel, or other ship equipped with instrumentation for oceanographic or marine scientific observations. A cruise is not limited to scintific operations but may also be an activity to relocate the vessel to another port for operational reasons."@en;
+	vann:example [
+		a <#Cruise>;
+        rdfs:label "IGFS2016";
+        <#undertakenBy> <http://vocab.nerc.ac.uk/collection/C17/45CE/>;
+        <#hasStartPortCall> [ a <#PortCall>; 
+            <#atPort> <http://vocab.nerc.ac.uk/collection/C38/current/BSH75/>;
+            <#hasTimeStamp> "2016-11-14"^^xsd:date
+        ];
+        <#hasEndPortCall> [ a <#PortCall>;
+            <#atPort> <http://vocab.nerc.ac.uk/collection/C38/current/BSH75/>;
+            <#hasTimeStamp> "2016-12-18"^^xsd:date
+        ];
+        <#hasChiefScientist> []
+	].
 
 <#CruiseSummaryReport> a rdfs:Class;
-	rdfs:label "Cruise summary report"@en.
+	rdfs:subClassOf foaf:Document, gl:Document, prov:Entity;
+	rdfs:label "Cruise Summary Report"@en;
+	rdfs:comment "Cruise Summary Reports are the usual means for reporting on cruises or field experiments at sea. Traditionally, it is the Chief Scientist's obligation to submit a Cruise Summary Report to their National Oceanographic Data Centre not later than two weeks after the cruise."@en;
+	gl:documentType [a gl:DocumentType; rdfs:label "Cruise Summary Report"];
+	vann:example [
+		a <#CruiseSummaryReport>;
+		<#collate-centre> <http://edmo.seadatanet.org/396>;
+    	dct:created "2017-01-10"^^xsd:date;
+   	 	dct:language <http://id.loc.gov/vocabulary/iso639-1/en>;
+    	dct:subject <http://vocab.nerc.ac.uk/collection/P22/current/28/>;
+    	dct:subject <http://registry.it.csiro.au/def/isotc211/MD_TopicCategoryCode/oceans>;
+    	<#boundingBox> "POLYGON((-12.4827 54.475, -3.7473 54.475, -3.7473 50.446, -12.4827 50.446, -12.4827 54.475))"^^gsp:wktLiteral;
+    	<#describesCruise> [];
+    	<#describesDataset> [];
+    	<#description> "The Irish Groundfish Survey (IGFS) is carried out in the 4th quarter annually as part of an internationally coordinated demersal trawl survey effort under the ICES working group for International Bottom Trawl Surveys (IBTS). The primary objective is to use trawl sampling to provide an annual relative index of abundance and recruitment for commercially exploited fish stocks."@en;
+    	<#responsibleLaboratory> <http://edmo.seadatanet.org/396>;
+    	<#generalOceanArea> <http://vocab.nerc.ac.uk/collection/C19/current/1_6/>;
+    	<#generalOceanArea> <http://vocab.nerc.ac.uk/collection/C19/current/SVX00017/>;
+    	<#marsdenSquare> <http://vocab.nerc.ac.uk/collection/C37/current/146/>;
+    	<#marsdenSquare> <http://vocab.nerc.ac.uk/collection/C37/current/181/>;
+    	<#marsdenSquare> <http://vocab.nerc.ac.uk/collection/C37/current/182/>
+	].
+
+<#Measurement> a rdfs:Class;
+	rdfs:subClassOf <#Operation>.
+
+<#Mooring> a rdfs:Class;
+	rdfs:subClassOf <#Operation>.
 
 <#Operation> a rdfs:Class;
-	rdfs:label "Operation"@en.
+	rdfs:label "Operation"@en;
+	rdfs:comment "An activity (such as a measurement or mooring) occuring on a research vessel cruise, flight, deployment, etc..."@en.
 
 <#PortCall> a rdfs:Class;
 	rdfs:subClassOf gl:PortCall, sdo:Event;
-	rdfs:label "Port call"@en.
+	rdfs:label "PortCall"@en;
+	rdfs:comment "A designated, specific port visited by a Vessel for some significant reason - the start or end of a mission; transfer of passengers, goods, or equipment"@en.
 
 gl:Cruise a rdfs:Class;
 	rdfs:subClassOf <#Cruise>.
 
 gl:PortCall a rdfs:Class;
 	rdfs:subClassOf <#PortCall>.
-	
-<#atPort> rdfs:subPropertyOf prov:atLocation;
+
+<#additionalDocumentation> rdfs:subPropertyOf rdfs:seeAlso;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range xsd:anyURI;
+    rdfs:label "additionalDocumentation"@en;
+    rdfs:comment "Provides a link from the Cruise Summary Report object to any supporting documentation, such as cruise report or scientific papers written from the research undertaken on the Cruise"@en.
+
+<associatedEvent> a rdf:Property;
+    rdfs:domain <#Operation>;
+    rdfs:range <#AssociatedEvent>;
+    rdfs:label "associatedEvent"@en;
+    rdfs:Comment "Connects an Operation to an AssociatedEvent describing a time and location associated with the Operation"@en.
+    
+<#atLocation> rdfs:subPropertyOf prov:atLocation;
+    rdfs:domain <#AssociatedEvent>;
+    rdfs:range gsp:wktLiteral;
+    rdfs:label "atLocation"@en;
+    rdfs:comment "Describes a location of the Operation through the AssociatedEvent. The object of the triple is a WKT string"@en.
+
+<#atPort> rdfs:subPropertyOf gl:atPort, prov:atLocation;
     rdfs:domain <#PortCall>;
     rdfs:range xsd:anyUri;
     rdfs:label "atPort"@en;
-    rdfs:comment "Describes the port at which a PortCall takes place. It is advised to use a term from a controlled vocabulary describing a gazetteer entry for the port as the object for the triple."@en.
-    
-<#hasChiefScientist> rdfs:subPropertyOf prov:wasAssociatedWith;
+    rdfs:comment "Describes the port at which a PortCall takes place. It is advised to use a term from a controlled vocabulary describing a gazetteer entry for the port as the object for the triple, such as the [SeaDataNet Ports Gazetteer](http://vocab.nerc.ac.uk/collection/C38/current/)"@en.
+
+<#boundingBox> rdfs:subPropertyOf dct:spatial;
+	rdfs:domain <#CruiseSummaryReport>;
+	rdfs:range gsp:wktLiteral;
+	rdfs:label "boundingBox";
+	rdfs:comment "Describes a bounding box in which the track of the Cruise described by the Cruise Summary Report fits. The object of the triple is a Well Known Text string"@en.
+
+<#collateCentre> a rdf:Property;
+	rdfs:domain <#CruiseSummaryReport>;
+	rdfs:range org:Organization;
+	rdfs:label "collateCentre"@en;
+	rdfs:comment "Connects a CruiseSummaryReport with the National Oceanographic Data centre which collates and submits these reports for the SeaDataNet infrastructre. The IRI of the org:Organization at the subject of the triple should come from the Linked Data representation of the [European Directory of Marine Organisations](https://edmo.seadatanet.org/sparql/)"@en.
+
+<#describesCruise> rdfs:subPropertyOf foaf:primaryTopic;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range <#Cruise>;
+    rdfs:range xsd:anyURI;
+    rdfs:label "describesCruise"@en;
+    rdfs:describesCruise "Connects a Cruise Summary Report with the Cruise object which the Summary Report decribes"@en.
+
+<#describesDataset> rdfs:subPropertyOf prov:wasGeneratedBy;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range gl:Dataset;
+    rdfs:label "describesDataset"@en;
+    rdf:comment "Provides a link from a Cruise Summary Report to a dataset which was created from or by the activity of the Cruise which the Cruise Summary Report describes"@en;
+    vann:example [
+    	<#describesDataset> [ 
+    		a gl:Dataset;
+        	gl:hasInstrument [
+        		a gl:Instrument;
+           		gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/308/>
+        	], [
+        		a gl:Instrument;
+           		gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/102/>
+        	], [
+       			a gl:Instrument;
+           		gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/133/>
+        	];
+       		gl:hasMeasurementType <http://vocab.nerc.ac.uk/collection/P02/current/CAPH/>, 
+								<http://vocab.nerc.ac.uk/collection/P02/current/CDTA/>,
+								<http://vocab.nerc.ac.uk/collection/P02/current/CHUM/>
+    	]
+    ].
+
+<#describesOperation> rdfs:subPropertyOf prov:wasGeneratedBy;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range <#Operation>;
+    rdfs:label "describesOperation"@en;
+    rdf:comment "Provides a link from a Cruise Summary Report to an Operation which occurred on the Cruise which the Cruise Summary Report describes"@en;
+    vann:example [
+    	<#describesOperation> [
+    		a <#Mooring>;
+        	<#description> "This is an example mooring record"@en;
+        	<#hasAssociatedEvent> [
+        		a <#AssociatedEvent>;
+            	<#hasTimeStamp> "2017-03-16"^^xsd:date;
+            	<#atLocation> "POINT(9.0568,53.2707)"^^gsp:wktLiteral
+        	];
+        	<#hasInstrument> [
+        		a gl:Instrument;
+            	<#instrumentId> "instrument-1-D01-487"@en;
+            	gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/C77/current/D71/>;
+            	<#instrumentPlatformCode> "D01/487";
+            	<#instrumentPlatformDescription> "Current meters, conducted by LABORATORY of PHYSICAL OCEANOGRAPHY (LPO) UMR 6523 CNRS-IFREMER-IRD-UBO"
+        	]
+        ]
+    ];
+	vann:example [
+		<#describesOperation> [
+			a <#Measurement>;
+        	<#hasDescription> "This is an example measurement record"@en;
+        	<#hasAssociatedEvent> [
+        		a <#AssociatedEvent>;
+            	<#hasTimeStamp> "2017-03-17"^^xsd:date;
+            	<#atLocation> "POINT(9.0568,53.2707)"^^gsp:wktLiteral
+        	]
+		]
+    ].
+
+<#description> rdfs:subPropertyOf rdfs:comment;
+    rdfs:domain <#CruiseSummaryReport>, <#Operation>;
+    rdfs:range rdfs:Literal;
+    rdfs:label "description"@en;
+    rdfs:comment "Provides a detailed abstarct of a Cruise (describing in plain-text the who, what, when, where, why, how of the activity), or an overview of an Operation"@en.
+
+<#generalOceanArea> a rdf:Property;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range xsd:anyURI;
+    rdfs:label "generalOceanArea"@en;
+    rdfs:comment "Provides a link to a gazetteer entry from a controlled vocabulary to describe any number of sea areas visited during a Cruise. Such controlled vocabularies include the [SeaVoX salt and fresh water body gazetteer](http://vocab.nerc.ac.uk/collection/C19/current/)".
+
+<#hasChiefScientist> rdfs:subPropertyOf gl:hasChiefScientist, prov:wasAssociatedWith;
     rdfs:domain <#Cruise>;
     rdfs:range prov:Agent;
     rdfs:label "hasChiefScientist";
-    rdfs:comment "The prov:Agent at the range of this predicate should represent the chief scientist undertaking the research cruise"@en.
+    rdfs:comment "The prov:Agent at the range of this predicate should represent the chief scientist undertaking the research cruise"@en;
+    vann:example[
+    	<#hasChiefScientist> [
+    		a foaf:Person, gl:Person, prov:Agent;
+    		org:memberOf <http://linked.seadatanet.org/edmo/396>;
+    		prov:actedOnBehalfOf <http://linked.seadatanet.org/edmo/396>;
+    		foaf:name "John Doe";
+    		foaf:mbox <mailto:john.doe@example.org>
+    	]
+    ].
 
-<#hasCoChiefScientist> rdfs:subPropertyOf prov:wasAssociatedWith;
+<#hasCoChiefScientist> rdfs:subPropertyOf gl:hasCoChiefScientist, prov:wasAssociatedWith;
     rdfs:domain <#Cruise>;
     rdfs:range prov:Agent;
     rdfs:label "hasCoChiefScientist"@en;
-    rdfs:comment "The prov:Agent at the range of this predicate should represent one of a number of co-chief scientists undertaking the research cruise"@en.
+    rdfs:comment "The prov:Agent at the range of this predicate should represent one of a number of co-chief scientists undertaking the research cruise"@en;
+    vann:example [
+    	vann:example[
+    	<#hasCoChiefScientist> [
+    		a foaf:Person, gl:Person, prov:Agent;
+    		org:memberOf <http://edmo.seadatanet.org/123456>;
+    		prov:actedOnBehalfOf <http://edmo.seadatanet.org/123456>;
+    		foaf:name "John Doe";
+    		foaf:mbox <mailto:john.doe@example.org>
+    	], [
+    		a foaf:Person, gl:Person, prov:Agent;
+    		org:memberOf <http://edmo.seadatanet.org/123456>;
+    		prov:actedOnBehalfOf <http://edmo.seadatanet.org/123456>;
+    		foaf:name "Jane Doe";
+    		foaf:mbox <mailto:jane.doe@example.org>
+    	]
+    ]
+    ].
     
 <#hasDOI> rdfs:subPropertyOf dct:identifier;
     rdfs:label "hasDOI"@en;
@@ -62,7 +305,7 @@ gl:PortCall a rdfs:Class;
     rdfs:range <#Cruise>;
     rdfs:domain rdfs:Literal, xsd:anyURI.
 
-<#hasEndPortCall> rdfs:subPropertyOf prov:qualifiedEnd;
+<#hasEndPortCall> rdfs:subPropertyOf gl:hasEndPortCall, prov:qualifiedEnd;
     rdfs:range <#Cruise>;
     rdfs:domain <#PortCall>;
     rdfs:label "hasEndPortCall"@en;
@@ -74,33 +317,106 @@ gl:PortCall a rdfs:Class;
     rdfs:label "identifier"@en;
     rdfs:comment "An identifier given to the research cruise by the organisation responsible for the research cruise taking place."@en.
 
-<#hasStartPortCall> rdfs:subPropertyOf prov:qualifiedStart;
+<#hasStartPortCall> rdfs:subPropertyOf gl:hasStartPortCall, prov:qualifiedStart;
     rdfs:range <#Cruise>;
     rdfs:domain <#PortCall>;
     rdfs:label "hasStartPortCall"@en;
     rdfs:comment "Links a Cruise object to the PortCall object which describes the event which started the Cruise."@en.
 
 <#hasTimeStamp> rdfs:subPropertyOf prov:atTime;
-    rdfs:domain <#PortCall>;
+    rdfs:domain <#Operation>, <#PortCall>;
     rdfs:range xsd:date, xsd:dateTime;
     rdfs:label "hasTimeStamp"@en;
     rdfs:comment "Describes the time at which a PortCall occurred"@en.
     
-<#hasTrack> a rdf:Property;
+<#hasTrack> rdfs:subPropertyOf gl:hasTrack;
     rdfs:domain <#Cruise>;
     rdfs:range gsp:wktLiteral;
     rdfs:label "hasTrack"@en;
     rdfs:comment "Provides a representation of the track taken by the research vessel during the Cruise as a Well Known Text literal."@en.
 
-<#isUndertakenBy> rdfs:subPropertyOf prov:used;
+<#instrumentID> a rdf:Property;
+	rdfs:subPropertyOf <#label>, rdfs:label;
+	rdfs:domain gl:Instrument;
+	rdfs:range rdfs:Literal;
+	rdfs:label "instrumentID"@en;
+	rdfs:comment "A lexical label, or, title for the Instrument"@en.
+
+<#instrumentPlatformCode> a rdf:Property;
+	rdfs:subPropertyOf <#label>, rdfs:label;
+	rdfs:domain gl:Instrument;
+	rdfs:range rdfs:Literal;
+	rdfs:label "instrumentPlatformCode"@en;
+	rdfs:comment "A lexical label, or, title for the Instrument Platform Code"@en.
+
+<#instrumentPlatformDefinition> a rdf:Property;
+	rdfs:subPropertyOf <#description>, rdfs:comment;
+	rdfs:domain gl:Instrument;
+	rdfs:range rdfs:Literal;
+	rdfs:label "instrumentPlatformDefinition"@en;
+	rdfs:comment "A lexical definition, description for the Instrument Platform Code"@en.
+
+<#label> a rdf:Property;
+	rdfs:subPropertyOf rdfs:label;
+	rdfs:range <#Cruise>;
+	rdfs:domain rdfs:Literal;
+	rdfs:label "label"@en;
+	rdfs:comment "A lexical label, or, title for the object"@en.
+
+<#marsdenSquare> a rdf:Property;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range xsd:anyURI;
+    rdfs:label "marsdenSquare"@en;
+    rdfs:comment "Marsden squares is a system that divides a chart of the world with latitude-longitude gridlines between 80N and 70S latitudes (or 90N and 80S) into grid cells of 10-degree latitude by 10-degree longitude, each with a unique, numeric identifier. The object of the triple should be one Marsden Square visted during the Cruise, and enough triples instantiated to describe all Marsden Squares visited during the Cruise. A controlled vocabulary of Marsden Squares is maintained be the [British Oceanographic Data Centre](http://vocab.nerc.ac.uk/collection/C37/current/)"@en.
+
+<#numberOfMeasurements> a rdf:Property;
+    rdfs:domain <#Measurement>;
+    rdfs:range xsd:integer;
+    rdfs:label "numberOfMeasurements"@en;
+    rdfs:comment "Describes the number of measurements made during a Measurement Operation"@en.
+
+<#responsibleLaboratory> rdfs:subPropertyOf prov:wasAttributedTo;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range foaf:Organization, gl:Organization, org:Organization, prov:Organization;
+    rdfs:label "responsibleLaboratory"@en;
+    rdfs:comment "Describes the laboratory, or one of the laboratories, responsible for the Cruise which is described by the Cruise Summary Report"@en.
+
+<#specificGeographicArea> rdfs:subPropertyOf rdfs:comment;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range rdfs:Literal;
+    rdfs:label "specificGeographicArea"@en;
+    rdfs:comment "A lexical comment which gives a more specific description of the area visited by the Cruise which is the Cruise Summary Report describes"@en.
+
+<#trackChart> rdfs:subPropertyOf rdfs:seeAlso;
+    rdfs:domain <#CruiseSummaryReport>;
+    rdfs:range xsd:anyURI;
+    rdfs:label "trackChart"@en;
+    rdfs:comment "Points to a graphical representation (e.g. a TIFF, PNG or JPG file) showing the track taken by the vessel during the Cruise described by the Cruise Summary Report"@en.
+
+<#undertakenBy> rdfs:subPropertyOf prov:used;
     rdfs:domain <#Cruise>;
     rdfs:range prov:Entity;
     rdfs:label "isUndertakenBy"@en;
-    rdfs:comment "The prov:Agent at the range of this predicate should represent the vessel undertaking the Cruise. Ideally, a controlled vocabulary resource should be used to instantiate the prov:Agent, such as the International Council for the Exploration of the Seas platform code list."@en.
+    rdfs:comment "The prov:Agent at the range of this predicate should represent the vessel undertaking the research cruise. Ideally, a controlled vocabulary resource should be used to instantiate the prov:Agent, such as the International Council for the Exploration of the Seas [ship and platform code list](https://vocab.ices.dk/services/rdf/collection/SHIPC)"@en;
+    owl:isInverseOf <#undertakes>.
 
-<#undertook> rdfs:subPropertyOf prov:wasGeneratedBy;
+<#undertakes> rdfs:subPropertyOf prov:wasGeneratedBy;
     rdfs:domain prov:Entity;
     rdfs:range <#Cruise>;
     rdfs:label "undertook";
-    rdfs:comment "The prov:Agent at the domain of this predicate should represent the vessel which undertook the Cruise at its range. Ideally, a controlled vocabulary resource should be used to instantiate the prov:Agent, such as the International Council for the Exploration of the Seas platform code list."@en.
+    rdfs:comment "The prov:Agent at the domain of this predicate should represent the vessel which undertook the Cruise at its range. Ideally, a controlled vocabulary resource should be used to instantiate the prov:Agent, such as the International Council for the Exploration of the Seas platform code list."@en;
+    owl:isInverseOf <#undertakenBy>.
 
+gl:atPort rdfs:subPropertyOf <#atPort>.
+
+gl:hasChiefScientist rdfs:subPrpertyOf <#hasChiefScientist>.
+
+gl:hasCoChiefScientist rdfs:subPrpertyOf <#hasCoChiefScientist>.
+
+gl:hasEndPortCall rdfs:subPropertyOf <#hasEndPortCall>.
+
+gl:hasStartPortCall rdfs:subPropertyOf <#hasStartPortCall>.
+
+gl:hasTrack rdfs:subPropertyOf <#hasTrack>.
+
+gl:hasVessel rdfs:subPropertyOf <#undertakenBy>.
