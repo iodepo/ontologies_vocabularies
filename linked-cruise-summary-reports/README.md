@@ -110,22 +110,22 @@ Cruise Summary Reports are the usual means for reporting on cruises or field exp
 **Example**
 
 ```ttl
-	_:02 a csr:CruiseSummaryReport;
-		csr:collate-centre <http://edmo.seadatanet.org/396>;
-    	dct:created "2017-01-10"^^xsd:date;
-   	 	dct:language <http://id.loc.gov/vocabulary/iso639-1/en>;
-    	dct:subject <http://vocab.nerc.ac.uk/collection/P22/current/28/>;
-    	dct:subject <http://registry.it.csiro.au/def/isotc211/MD_TopicCategoryCode/oceans>;
-    	csr:boundingBox "POLYGON((-12.4827 54.475, -3.7473 54.475, -3.7473 50.446, -12.4827 50.446, -12.4827 54.475))"^^gsp:wktLiteral;
-    	csr:describesCruise [];
-    	csr:describesDataset [];
-    	csr:description "The Irish Groundfish Survey (IGFS) is carried out in the 4th quarter annually as part of an internationally coordinated demersal trawl survey effort under the ICES working group for International Bottom Trawl Surveys (IBTS). The primary objective is to use trawl sampling to provide an annual relative index of abundance and recruitment for commercially exploited fish stocks."@en;
-    	csr:responsibleLaboratory <http://edmo.seadatanet.org/396>;
-    	csr:generalOceanArea <http://vocab.nerc.ac.uk/collection/C19/current/1_6/>;
-    	csr:generalOceanArea <http://vocab.nerc.ac.uk/collection/C19/current/SVX00017/>;
-    	csr:marsdenSquare <http://vocab.nerc.ac.uk/collection/C37/current/146/>;
-    	csr:marsdenSquare <http://vocab.nerc.ac.uk/collection/C37/current/181/>;
-    	csr:marsdenSquare <http://vocab.nerc.ac.uk/collection/C37/current/182/>.
+_:02 a csr:CruiseSummaryReport;
+	csr:collate-centre <http://edmo.seadatanet.org/396>;
+   	dct:created "2017-01-10"^^xsd:date;
+ 	dct:language <http://id.loc.gov/vocabulary/iso639-1/en>;
+   	dct:subject <http://vocab.nerc.ac.uk/collection/P22/current/28/>;
+   	dct:subject <http://registry.it.csiro.au/def/isotc211/MD_TopicCategoryCode/oceans>;
+   	csr:boundingBox "POLYGON((-12.4827 54.475, -3.7473 54.475, -3.7473 50.446, -12.4827 50.446, -12.4827 54.475))"^^gsp:wktLiteral;
+   	csr:describesCruise [];
+   	csr:describesDataset [];
+   	csr:description "The Irish Groundfish Survey (IGFS) is carried out in the 4th quarter annually as part of an internationally coordinated demersal trawl survey effort under the ICES working group for International Bottom Trawl Surveys (IBTS). The primary objective is to use trawl sampling to provide an annual relative index of abundance and recruitment for commercially exploited fish stocks."@en;
+   	csr:responsibleLaboratory <http://edmo.seadatanet.org/396>;
+   	csr:generalOceanArea <http://vocab.nerc.ac.uk/collection/C19/current/1_6/>;
+   	csr:generalOceanArea <http://vocab.nerc.ac.uk/collection/C19/current/SVX00017/>;
+   	csr:marsdenSquare <http://vocab.nerc.ac.uk/collection/C37/current/146/>;
+   	csr:marsdenSquare <http://vocab.nerc.ac.uk/collection/C37/current/181/>;
+   	csr:marsdenSquare <http://vocab.nerc.ac.uk/collection/C37/current/182/>.
 ```
 
 **Is subclass of**
@@ -309,22 +309,22 @@ Provides a link from a Cruise Summary Report to a dataset which was created from
 **Example**
 
 ```ttl
-	_:02 csr:describesDataset [ 
-    	a gl:Dataset;
-        gl:hasInstrument [
-        	a gl:Instrument;
-           	gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/308/>
-        ], [
-        	a gl:Instrument;
-           	gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/102/>
-        ], [
-       		a gl:Instrument;
-           	gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/133/>
-        ];
-       	gl:hasMeasurementType <http://vocab.nerc.ac.uk/collection/P02/current/CAPH/>, 
-								<http://vocab.nerc.ac.uk/collection/P02/current/CDTA/>,
-								<http://vocab.nerc.ac.uk/collection/P02/current/CHUM/>
-    ].
+_:02 csr:describesDataset [ 
+   	a gl:Dataset;
+	gl:hasInstrument [
+    a gl:Instrument;
+       	gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/308/>
+    ], [
+      	a gl:Instrument;
+      	gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/102/>
+    ], [
+    	a gl:Instrument;
+       	gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/133/>
+    ];
+    gl:hasMeasurementType <http://vocab.nerc.ac.uk/collection/P02/current/CAPH/>, 
+							<http://vocab.nerc.ac.uk/collection/P02/current/CDTA/>,
+							<http://vocab.nerc.ac.uk/collection/P02/current/CHUM/>
+].
 ```
 
 **Has domain**
@@ -341,35 +341,35 @@ Provides a link from a Cruise Summary Report to an Operation which occurred on t
 
 **Example**
 
-```
-	_:02 csr:describesOperation [
-    	csr:Mooring;
-        csr:description "This is an example mooring record"@en;
-        csr:hasAssociatedEvent [
-        	a csr:AssociatedEvent;
-           	csr:hasTimeStamp "2017-03-16"^^xsd:date;
-           	csr:atLocation "POINT(9.0568,53.2707)"^^gsp:wktLiteral
-        ];
-        csr:hasInstrument [
-        	a gl:Instrument;
-           	csr:instrumentId "instrument-1-D01-487"@en;
-           	gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/C77/current/D71/>;
-           	csr:instrumentPlatformCode "D01/487";
-           	csr:instrumentPlatformDescription "Current meters, conducted by LABORATORY of PHYSICAL OCEANOGRAPHY (LPO) UMR 6523 CNRS-IFREMER-IRD-UBO"
-        ]
- 	]
+```ttl
+_:02 csr:describesOperation [
+   	csr:Mooring;
+    csr:description "This is an example mooring record"@en;
+    csr:hasAssociatedEvent [
+       	a csr:AssociatedEvent;
+       	csr:hasTimeStamp "2017-03-16"^^xsd:date;
+       	csr:atLocation "POINT(9.0568,53.2707)"^^gsp:wktLiteral
+    ];
+    csr:hasInstrument [
+       	a gl:Instrument;
+       	csr:instrumentId "instrument-1-D01-487"@en;
+       	gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/C77/current/D71/>;
+       	csr:instrumentPlatformCode "D01/487";
+       	csr:instrumentPlatformDescription "Current meters, conducted by LABORATORY of PHYSICAL OCEANOGRAPHY (LPO) UMR 6523 CNRS-IFREMER-IRD-UBO"
+    ]
+]
 ```
 
 ```ttl
-	_:02 csr:describesOperation [
-		a csr:Measurement;
-        csr:hasDescription "This is an example measurement record"@en;
-        csr:hasAssociatedEvent [
-        	a csr:AssociatedEvent;
-           	csr:hasTimeStamp "2017-03-17"^^xsd:date;
-           	csr:atLocation "POINT(9.0568,53.2707)"^^gsp:wktLiteral
-        ]
-	]
+_:02 csr:describesOperation [
+	a csr:Measurement;
+    csr:hasDescription "This is an example measurement record"@en;
+    csr:hasAssociatedEvent [
+       	a csr:AssociatedEvent;
+       	csr:hasTimeStamp "2017-03-17"^^xsd:date;
+       	csr:atLocation "POINT(9.0568,53.2707)"^^gsp:wktLiteral
+    ]
+]
 ```	
 
 **Is sub-property of**
@@ -417,13 +417,13 @@ The prov:Agent at the range of this predicate should represent the chief scienti
 **Example**
 
 ```ttl
-	_:01 csr:hasChiefScientist [
-    	a foaf:Person, gl:Person, prov:Agent;
-    	org:memberOf <http://edmo.seadatanet.org/396>;
-    	prov:actedOnBehalfOf <http://edmo.seadatanet.org/396>;
-    	foaf:name "John Doe";
-    	foaf:mbox <mailto:john.doe@example.org>
-    ]
+_:01 csr:hasChiefScientist [
+   	a foaf:Person, gl:Person, prov:Agent;
+   	org:memberOf <http://edmo.seadatanet.org/396>;
+   	prov:actedOnBehalfOf <http://edmo.seadatanet.org/396>;
+   	foaf:name "John Doe";
+   	foaf:mbox <mailto:john.doe@example.org>
+]
 ```
 
 **Is sub-property of**
@@ -444,15 +444,14 @@ The prov:Agent at the range of this predicate should represent one of a number o
 **Example**
 
 ```ttl
-	_:01 csr:hasCoChiefScientist [
-    	a foaf:Person, gl:Person, prov:Agent;
-    	org:memberOf <http://edmo.seadatanet.org/123456>;
-    	prov:actedOnBehalfOf <http://edmo.seadatanet.org/123456>;
-    	foaf:name "John Doe";
-    	foaf:mbox <mailto:john.doe@example.org>
+_:01 csr:hasCoChiefScientist [
+	   	a foaf:Person, gl:Person, prov:Agent;
+   		org:memberOf <http://edmo.seadatanet.org/123456>;
+   		prov:actedOnBehalfOf <http://edmo.seadatanet.org/123456>;
+   		foaf:name "John Doe";
+   		foaf:mbox <mailto:john.doe@example.org>
     ], [
 		a foaf:Person, gl:Person, prov:Agent;
-		
     	org:memberOf <http://edmo.seadatanet.org/123456>;
     	prov:actedOnBehalfOf <http://edmo.seadatanet.org/123456>;
     	foaf:name "Jane Doe";
@@ -732,6 +731,6 @@ The assistance of Arno Lambert and Peter Pissiersens at the Project Office of th
 
 ### Informative References
 
-[ioc-logo]: (./img/ioc_logo.png)
-[sdc-logo]: (./img/sdc_logo.png)
-[top-level]: (./img/linked_cruise_summary_reports_top_level.png)
+[ioc-logo]: ./img/ioc_logo.png
+[sdc-logo]: ./img/sdc_logo.png
+[top-level]: ./img/linked_cruise_summary_reports_top_level.png
