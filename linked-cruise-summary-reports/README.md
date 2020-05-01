@@ -49,7 +49,7 @@
 | xsd | http://www.w3.org/2001/XMLSchema# | Used in XML Schemas for the elements, attributes, and types of the W3C XML Schema Recommendation itself. |
 
 ## Classes
-[AssociatedEvent](#associatedevent) | [Cruise](#cruise) | [Measurement](#measurement) | [Mooring](#mooring) | [Operation](#operation) | | [CruiseSummaryReport](#cruisesummaryreport) | [Port Call](#portcall)
+[AssociatedEvent](#associatedevent) | [Cruise](#cruise) | [CruiseSummaryReport](#cruisesummaryreport) | [Measurement](#measurement) | [Mooring](#mooring) | [Operation](#operation) | [Port Call](#portcall)
 
 ![Class level overview of the Cruise Summary Report vocabulary][top-level]
 
@@ -95,7 +95,7 @@ A cruise is a port-to-port activity undertaken by a research vessel, or other sh
 
 **Described with properties**
 
-[hasChiefScientist](#haschiefscientist) | [hasCoChiefScientist](#hascochiefscientist) | [hasDOI](#hasdOI) | [hasEndPortCall](#hasendportcall) | [hasIdentifier](#hasidentifier) | [hasStartPortCall](#hasstartportcall) | [hasTrack](#hastrack)  | [label](#label)| [undertakenBy](#undertakenby)
+[hasChiefScientist](#haschiefscientist) | [hasCoChiefScientist](#hascochiefscientist) | [hasDOI](#hasdOI) | [hasEndPortCall](#hasendportcall) | [hasIdentifier](#hasidentifier) | [hasStartPortCall](#hasstartportcall) | [hasTrack](#hastrack)  | [label](#label) | [undertakenBy](#undertakenby)
 
 **In range of**
 
@@ -199,7 +199,7 @@ A designated, specific port visited by a Vessel for some significant reason - th
 
 ## Attributes
 
-[additionalDocumentation](#additionaldocumentation) | [associatedEvent](#associatedevent) | [atLocation](#atlocation) | [atPort](#atport) | [boundingBox](#boundingbox) | [collateCentre](#collatecentre) | [describesCruise](#describescruise) | [describesDataset](#describesdataset) | [describesOperation](#describesoperation) | [description](#description) | [generalOceanArea](#generaloceanarea) | [hasChiefScientist](#haschiefscientist) | [hasCoChiefScientist](#hascochiefscientist) | [hasDOI](#hasdoi) | [hasEndPortCall](#hasendportcall) | [hasIdentifier](#hasidentifier) | [hasProgram](#hasprogram) | [hasStartPortCall](#hasstartportcall) | [hasTimeStamp](#hastimestamp) | [hasTrack](#hastrack) | [instrumentID](#instrumentid) | | [instrumentPlatformCode](#instrumentplatformcode) | [instrumentPlatformDescription](#instrumentplatformdescription) | [label](#label) | [marsdenSquare](#marsdensquare) | [numberOfMeasurements](#numberofmeasurements) | [responsibleLaboratory](#responsiblelaboratory) | [specificGeographicArea](#specificgeographicarea) | [trackChart](#trackchart) | | [undertakenBy](#undertakenby) | [undertakes](#undertakes)
+[additionalDocumentation](#additionaldocumentation) | [associatedEvent](#associatedevent) | [atLocation](#atlocation) | [atPort](#atport) | [boundingBox](#boundingbox) | [collateCentre](#collatecentre) | [describesCruise](#describescruise) | [describesDataset](#describesdataset) | [describesOperation](#describesoperation) | [description](#description) | [generalOceanArea](#generaloceanarea) | [hasChiefScientist](#haschiefscientist) | [hasCoChiefScientist](#hascochiefscientist) | [hasDOI](#hasdoi) | [hasEndPortCall](#hasendportcall) | [hasIdentifier](#hasidentifier) | [hasProgram](#hasprogram) | [hasStartPortCall](#hasstartportcall) | [hasTimeStamp](#hastimestamp) | [hasTrack](#hastrack) | [instrumentID](#instrumentid) | [instrumentPlatformCode](#instrumentplatformcode) | [instrumentPlatformDescription](#instrumentplatformdescription) | [label](#label) | [marsdenSquare](#marsdensquare) | [numberOfMeasurements](#numberofmeasurements) | [responsibleLaboratory](#responsiblelaboratory) | [specificGeographicArea](#specificgeographicarea) | [trackChart](#trackchart) | [undertakenBy](#undertakenby) | [undertakes](#undertakes)
 
 ### additionalDocumentation
 
@@ -312,16 +312,16 @@ Provides a link from a Cruise Summary Report to a dataset which was created from
 _:02 csr:describesDataset [ 
    	a gl:Dataset;
 	gl:hasInstrument [
-    a gl:Instrument;
-       	gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/308/>
-    ], [
-      	a gl:Instrument;
-      	gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/102/>
-    ], [
-    	a gl:Instrument;
-       	gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/133/>
-    ];
-    gl:hasMeasurementType <http://vocab.nerc.ac.uk/collection/P02/current/CAPH/>, 
+ 		a gl:Instrument;
+		gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/308/>
+	], [
+		a gl:Instrument;
+		gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/102/>
+	], [
+ 		a gl:Instrument;
+ 		gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/L05/current/133/>
+	];
+ 	gl:hasMeasurementType <http://vocab.nerc.ac.uk/collection/P02/current/CAPH/>, 
 							<http://vocab.nerc.ac.uk/collection/P02/current/CDTA/>,
 							<http://vocab.nerc.ac.uk/collection/P02/current/CHUM/>
 ].
@@ -343,32 +343,32 @@ Provides a link from a Cruise Summary Report to an Operation which occurred on t
 
 ```ttl
 _:02 csr:describesOperation [
-   	csr:Mooring;
-    csr:description "This is an example mooring record"@en;
-    csr:hasAssociatedEvent [
-       	a csr:AssociatedEvent;
-       	csr:hasTimeStamp "2017-03-16"^^xsd:date;
-       	csr:atLocation "POINT(9.0568,53.2707)"^^gsp:wktLiteral
-    ];
-    csr:hasInstrument [
-       	a gl:Instrument;
-       	csr:instrumentId "instrument-1-D01-487"@en;
-       	gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/C77/current/D71/>;
-       	csr:instrumentPlatformCode "D01/487";
-       	csr:instrumentPlatformDescription "Current meters, conducted by LABORATORY of PHYSICAL OCEANOGRAPHY (LPO) UMR 6523 CNRS-IFREMER-IRD-UBO"
-    ]
+	a csr:Mooring;
+	csr:description "This is an example mooring record"@en;
+	csr:hasAssociatedEvent [
+		a csr:AssociatedEvent;
+		csr:hasTimeStamp "2017-03-16"^^xsd:date;
+		csr:atLocation "POINT(9.0568,53.2707)"^^gsp:wktLiteral
+	];
+	csr:hasInstrument [
+ 		a gl:Instrument;
+ 		csr:instrumentId "instrument-1-D01-487"@en;
+		gl:hasInstrumentType <http://vocab.nerc.ac.uk/collection/C77/current/D71/>;
+ 		csr:instrumentPlatformCode "D01/487";
+		csr:instrumentPlatformDescription "Current meters, conducted by LABORATORY of PHYSICAL OCEANOGRAPHY (LPO) UMR 6523 CNRS-IFREMER-IRD-UBO"
+	]
 ]
 ```
 
 ```ttl
 _:02 csr:describesOperation [
 	a csr:Measurement;
-    csr:hasDescription "This is an example measurement record"@en;
-    csr:hasAssociatedEvent [
-       	a csr:AssociatedEvent;
-       	csr:hasTimeStamp "2017-03-17"^^xsd:date;
-       	csr:atLocation "POINT(9.0568,53.2707)"^^gsp:wktLiteral
-    ]
+	csr:hasDescription "This is an example measurement record"@en;
+	csr:hasAssociatedEvent [
+		a csr:AssociatedEvent;
+		csr:hasTimeStamp "2017-03-17"^^xsd:date;
+		csr:atLocation "POINT(9.0568,53.2707)"^^gsp:wktLiteral
+	]
 ]
 ```	
 
@@ -418,11 +418,11 @@ The prov:Agent at the range of this predicate should represent the chief scienti
 
 ```ttl
 _:01 csr:hasChiefScientist [
-   	a foaf:Person, gl:Person, prov:Agent;
-   	org:memberOf <http://edmo.seadatanet.org/396>;
-   	prov:actedOnBehalfOf <http://edmo.seadatanet.org/396>;
-   	foaf:name "John Doe";
-   	foaf:mbox <mailto:john.doe@example.org>
+	a foaf:Person, gl:Person, prov:Agent;
+	org:memberOf <http://edmo.seadatanet.org/396>;
+	prov:actedOnBehalfOf <http://edmo.seadatanet.org/396>;
+	foaf:name "John Doe";
+	foaf:mbox <mailto:john.doe@example.org>
 ]
 ```
 
@@ -445,16 +445,16 @@ The prov:Agent at the range of this predicate should represent one of a number o
 
 ```ttl
 _:01 csr:hasCoChiefScientist [
-	   	a foaf:Person, gl:Person, prov:Agent;
-   		org:memberOf <http://edmo.seadatanet.org/123456>;
-   		prov:actedOnBehalfOf <http://edmo.seadatanet.org/123456>;
-   		foaf:name "John Doe";
-   		foaf:mbox <mailto:john.doe@example.org>
-    ], [
 		a foaf:Person, gl:Person, prov:Agent;
-    	org:memberOf <http://edmo.seadatanet.org/123456>;
-    	prov:actedOnBehalfOf <http://edmo.seadatanet.org/123456>;
-    	foaf:name "Jane Doe";
+ 		org:memberOf <http://edmo.seadatanet.org/123456>;
+ 		prov:actedOnBehalfOf <http://edmo.seadatanet.org/123456>;
+ 		foaf:name "John Doe";
+		foaf:mbox <mailto:john.doe@example.org>
+	], [
+		a foaf:Person, gl:Person, prov:Agent;
+		org:memberOf <http://edmo.seadatanet.org/123456>;
+		prov:actedOnBehalfOf <http://edmo.seadatanet.org/123456>;
+		foaf:name "Jane Doe";
     	foaf:mbox <mailto:jane.doe@example.org>
 	]
 ```
