@@ -34,7 +34,7 @@
 | Prefix | Namespace IRI | Definition |
 |:-------|:--------------|:-----------|
 | csr | http://purl.org/org/iode/po/voc/cruise-summary-reports# | The Linked Cruise Summary Report namespace |
-| dbo | http://dbpedia.org/ontology/ |  |
+| dbo | http://dbpedia.org/ontology/ | This ontology corresponds to the DBpedia data set which contains instance data extracted from the different language versions of Wikipedia |
 | dct | http://www.purl.org/dc/terms/ | All metadata terms maintained by the Dublin Core Metadata Initiative |
 | foaf | http://xmlns.com/foaf/spec/# | A language linking people and information using the Web |
 | gl | http://schema.geolink.org/1.0/base/main# | The GeoLink Ontology Design Patterns for marine sciences data markup |
@@ -134,7 +134,7 @@ _:02 a csr:CruiseSummaryReport;
 
 **Described with properties**
 
-[additionalDocumentation](#additionaldocumentation) | [boundingBox](#boundingbox) | [collateCentre](#collateCentre) | [describesCruise](#describescruise) | [describesDataset](#describesDataset) | [describesOperation](#describesOperation) | [description] | [generalOceanArea] | [hasProgram] | [marsdenSquare] | [responsibleLaboratory] | [specificGeographicArea] | [trackChart]
+[additionalDocumentation](#additionaldocumentation) | [boundingBox](#boundingbox) | [collateCentre](#collateCentre) | [describesCruise](#describescruise) | [describesDataset](#describesDataset) | [describesOperation](#describesOperation) | [description](#description) | [generalOceanArea](#generaloceanarea) | [hasProgram](hasprogram) | [marsdenSquare](#marsdensquare) | [responsibleLaboratory](#responsiblelaboratory) | [specificGeographicArea](#specificgeographicarea) | [trackChart](#trackchart)
 
 **GeoLink Document Type**
 
@@ -385,7 +385,7 @@ _:02 csr:describesOperation [
 
 **IRI** `http://purl.org/org/iode/po/voc/cruise-summary-reports#description`
 
-Provides a detailed abstarct of a Cruise (describing in plain-text the who, what, when, where, why, how of the activity), or an overview of an Operation
+Provides a detailed abstract of a Cruise (describing in plain-text the who, what, when, where, why, how of the activity), or an overview of an Operation
 
 **Is sub-property of**
 [rdfs:comment](http://www.w3.org/2000/01/rdf-schema#comment)
@@ -515,11 +515,15 @@ An identifier given to the research cruise by the organisation responsible for t
 
 ### hasProgram
 
-**IRI** `http://purl.org/org/iode/po/voc/cruise-summary-reports#`
+**IRI** `http://purl.org/org/iode/po/voc/cruise-summary-reports#hasProgram`
+
+Links to the, or one of the, funded programmes or projects which enabled the Cruise described by the Cruise Summary Report to take place. For Cruise Summary Reports generated for the SeaDataNet infrastructure, the object of the triple should be a Linked Data instance of a record from the [European Directory of Marine Environmental Research Projects](https://edmerp.seadatanet.org/sparql/)
 
 **Has domain**
+[CruiseSummaryReport](#cruisesummaryreport)
 
 **Has range**
+[dbo:ResearchProject](http://dbpedia.org/ontology/ResearchProject), [gl:Program](http://schema.geolink.org/1.0/base/main#hasEndPortCall), [prov:Activity](http://www.w3.org/ns/prov#Activity)
 
 ### hasStartPortCall
 

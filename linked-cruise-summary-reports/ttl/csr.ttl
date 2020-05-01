@@ -1,6 +1,7 @@
 @base <http://purl.org/org/iode/po/voc/cruise-summary-reports>.
 
 @prefix dct: <http://www.purl.org/dc/terms/>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
 @prefix foaf: <http://xmlns.com/foaf/spec/#>.
 @prefix gl: <http://schema.geolink.org/1.0/base/main#>.
 @prefix gsp: <http://www.opengis.net/ont/geosparql#>.
@@ -253,7 +254,7 @@ gl:PortCall a rdfs:Class;
     rdfs:domain <#CruiseSummaryReport>, <#Operation>;
     rdfs:range rdfs:Literal;
     rdfs:label "description"@en;
-    rdfs:comment "Provides a detailed abstarct of a Cruise (describing in plain-text the who, what, when, where, why, how of the activity), or an overview of an Operation"@en.
+    rdfs:comment "Provides a detailed abstract of a Cruise (describing in plain-text the who, what, when, where, why, how of the activity), or an overview of an Operation"@en.
 
 <#generalOceanArea> a rdf:Property;
     rdfs:domain <#CruiseSummaryReport>;
@@ -316,6 +317,12 @@ gl:PortCall a rdfs:Class;
     rdfs:range rdfs:Literal;
     rdfs:label "identifier"@en;
     rdfs:comment "An identifier given to the research cruise by the organisation responsible for the research cruise taking place."@en.
+
+<#hasProgram> a rdf:Property;
+	rdfs:subPropertyOf prov:wasGeneratedBy;
+	rdfs:domain <#CruiseSummaryReport>;
+	rdfs:range prov:Activity, dbo:ResearchProject, geolink:Program;
+	rdfs:label "hasProgram"@en.
 
 <#hasStartPortCall> rdfs:subPropertyOf gl:hasStartPortCall, prov:qualifiedStart;
     rdfs:range <#Cruise>;
