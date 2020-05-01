@@ -321,7 +321,7 @@ gl:PortCall a rdfs:Class;
 <#hasProgram> a rdf:Property;
 	rdfs:subPropertyOf prov:wasGeneratedBy;
 	rdfs:domain <#CruiseSummaryReport>;
-	rdfs:range prov:Activity, dbo:ResearchProject, geolink:Program;
+	rdfs:range prov:Activity, dbo:ResearchProject, gl:Program;
 	rdfs:label "hasProgram"@en.
 
 <#hasStartPortCall> rdfs:subPropertyOf gl:hasStartPortCall, prov:qualifiedStart;
